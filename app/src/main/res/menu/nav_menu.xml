@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/makerFragment"
+        android:icon="@drawable/ic_maker"
+        android:title="@string/maker" />
+    <item
+        android:id="@+id/galleryFragment"
+        android:icon="@drawable/ic_gallery"
+        android:title="@string/gallery" />
+</menu>
