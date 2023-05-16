@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/makerFragment"
-        android:name="com.yangsooplus.snapkarlo.MakerFragment"
+        android:name="com.yangsooplus.snapkarlo.ui.MakerFragment"
         android:label="fragment_maker"
         tools:layout="@layout/fragment_maker" />
     <fragment
         android:id="@+id/galleryFragment"
-        android:name="com.yangsooplus.snapkarlo.GalleryFragment"
+        android:name="com.yangsooplus.snapkarlo.ui.GalleryFragment"
         android:label="fragment_gallery"
         tools:layout="@layout/fragment_gallery" />
 </navigation>

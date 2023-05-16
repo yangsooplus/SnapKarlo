@@ -1,10 +1,11 @@
-package com.yangsooplus.snapkarlo
+package com.yangsooplus.snapkarlo.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.yangsooplus.snapkarlo.R
 
 class MakerFragment : Fragment() {
 

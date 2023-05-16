@@ -1,9 +1,10 @@
-package com.yangsooplus.snapkarlo
+package com.yangsooplus.snapkarlo.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.yangsooplus.snapkarlo.R
 import com.yangsooplus.snapkarlo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
