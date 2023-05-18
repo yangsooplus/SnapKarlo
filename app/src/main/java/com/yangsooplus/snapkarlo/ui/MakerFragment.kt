@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.yangsooplus.snapkarlo.data.ApiState
+import com.yangsooplus.snapkarlo.data.Base64Converter
 import com.yangsooplus.snapkarlo.databinding.FragmentMakerBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -33,20 +34,24 @@ class MakerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getT2iImage("bubble sugar sweet")
-        showImage()
+        collectImage()
     }
 
-    private fun showImage() {
+    private fun collectImage() {
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.t2iResponseState.collect {
-                    when (it) {
-                        is ApiState.Error -> binding.tvState.text = it.message
-                        is ApiState.Loading -> binding.tvState.text = "loading"
-                        is ApiState.Success -> binding.tvState.text = it.data?.id ?: "none"
+                viewModel.t2iResponseState.collect { t2i ->
+                    when (t2i) {
+                        is ApiState.Error -> {}
+                        is ApiState.Loading -> {}
+                        is ApiState.Success -> t2i.data?.let { setImage(it.images[0].image) }
                     }
                 }
             }
         }
+    }
+
+    private fun setImage(string: String) {
+        binding.ivMaker.setImageBitmap(Base64Converter.string2Bitmap(string))
     }
 }
