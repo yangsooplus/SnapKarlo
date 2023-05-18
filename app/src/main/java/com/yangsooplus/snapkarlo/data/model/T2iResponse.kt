@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Response(
+data class T2iResponse(
     @SerialName("id")
     val id: String,
     @SerialName("model_version")

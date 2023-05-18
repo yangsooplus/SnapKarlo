@@ -10,5 +10,7 @@ data class Image(
     @SerialName("image")
     val image: String,
     @SerialName("nsfw")
-    val nsfw: Boolean
+    val nsfw: Boolean,
+    @SerialName("nsfw_score")
+    val nsfwScore: Double
 )
