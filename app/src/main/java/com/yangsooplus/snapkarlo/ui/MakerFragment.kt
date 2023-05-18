@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.yangsooplus.snapkarlo.R
 import com.yangsooplus.snapkarlo.data.ApiState
 import com.yangsooplus.snapkarlo.data.Base64Converter
 import com.yangsooplus.snapkarlo.databinding.FragmentMakerBinding
@@ -33,8 +34,15 @@ class MakerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getT2iImage("bubble sugar sweet")
+
         collectImage()
+        collectUiState()
+
+        binding.btnCreate.setOnClickListener {
+            if (binding.tietT2i.text.toString().isNotEmpty()) {
+                viewModel.getT2iImage(binding.tietT2i.text.toString())
+            }
+        }
     }
 
     private fun collectImage() {
@@ -42,9 +50,37 @@ class MakerFragment : Fragment() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.t2iResponseState.collect { t2i ->
                     when (t2i) {
-                        is ApiState.Error -> {}
-                        is ApiState.Loading -> {}
-                        is ApiState.Success -> t2i.data?.let { setImage(it.images[0].image) }
+                        is ApiState.Error -> {
+                            binding.ivT2i.visibility = View.VISIBLE
+                            binding.ivT2i.setImageResource(R.drawable.ic_error)
+                        }
+                        is ApiState.Loading -> {
+                            binding.ivT2i.visibility = View.GONE
+                        }
+                        is ApiState.Success -> {
+                            binding.ivT2i.visibility = View.VISIBLE
+                            t2i.data?.let { setImage(it.images[0].image) }
+                        }
+                        is ApiState.Idle -> {}
+                    }
+                }
+            }
+        }
+    }
+
+    private fun collectUiState() {
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.t2iUiState.collect { uistate ->
+                    when (uistate) {
+                        UiState.Idle -> {
+                            binding.pbLoad.visibility = View.GONE
+                            binding.btnCreate.isEnabled = true
+                        }
+                        UiState.Loading -> {
+                            binding.pbLoad.visibility = View.VISIBLE
+                            binding.btnCreate.isEnabled = false
+                        }
                     }
                 }
             }
@@ -52,6 +88,6 @@ class MakerFragment : Fragment() {
     }
 
     private fun setImage(string: String) {
-        binding.ivMaker.setImageBitmap(Base64Converter.string2Bitmap(string))
+        binding.ivT2i.setImageBitmap(Base64Converter.string2Bitmap(string))
     }
 }
