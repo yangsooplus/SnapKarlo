@@ -10,9 +10,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.yangsooplus.snapkarlo.R
-import com.yangsooplus.snapkarlo.data.remote.ApiState
+import com.yangsooplus.snapkarlo.ui.state.ApiState
 import com.yangsooplus.snapkarlo.data.Base64Converter
 import com.yangsooplus.snapkarlo.databinding.FragmentMakerBinding
+import com.yangsooplus.snapkarlo.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -69,14 +70,14 @@ class MakerFragment : Fragment() {
 
     private fun collectUiState() {
         lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.t2IMakerUiState.collect { uistate ->
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.t2IUiState.collect { uistate ->
                     when (uistate) {
-                        MakerUiState.Idle -> {
+                        UiState.Idle -> {
                             binding.pbLoad.visibility = View.GONE
                             binding.btnCreate.isEnabled = true
                         }
-                        MakerUiState.Loading -> {
+                        UiState.Loading -> {
                             binding.pbLoad.visibility = View.VISIBLE
                             binding.btnCreate.isEnabled = false
                         }

@@ -12,11 +12,11 @@ class GalleryLocalDataSource @Inject constructor(
         imageDao.insert(imageEntity)
     }
 
-    suspend fun getAll(): Flow<List<ImageEntity>> {
+    fun getAll(): Flow<List<ImageEntity>> {
         return imageDao.getAll()
     }
 
-    suspend fun findByKeyword(keyword: String): Flow<List<ImageEntity>> {
+    fun findByKeyword(keyword: String): Flow<List<ImageEntity>> {
         return imageDao.findByKeyword(keyword)
     }
 

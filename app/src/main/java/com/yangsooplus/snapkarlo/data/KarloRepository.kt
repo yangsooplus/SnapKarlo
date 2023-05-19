@@ -2,7 +2,7 @@ package com.yangsooplus.snapkarlo.data
 
 import com.yangsooplus.snapkarlo.data.local.GalleryLocalDataSource
 import com.yangsooplus.snapkarlo.data.local.model.ImageEntity
-import com.yangsooplus.snapkarlo.data.remote.ApiState
+import com.yangsooplus.snapkarlo.ui.state.ApiState
 import com.yangsooplus.snapkarlo.data.remote.KarloRemoteDataSource
 import com.yangsooplus.snapkarlo.data.remote.model.Image
 import com.yangsooplus.snapkarlo.data.remote.model.PromptData
