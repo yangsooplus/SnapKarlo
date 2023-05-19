@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class KarloRemoteDataSource @Inject constructor(
     private val KarloService: KarloService
-) : KarloDataSource {
-    override suspend fun getT2iImage(promptData: PromptData): Response<T2iResponse> {
+) {
+    suspend fun getT2iImage(promptData: PromptData): Response<T2iResponse> {
         return KarloService.getGeneratedImageByText(promptData)
     }
 }
