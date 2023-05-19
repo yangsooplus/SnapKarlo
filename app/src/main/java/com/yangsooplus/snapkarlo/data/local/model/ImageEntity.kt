@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.LocalDateTime
 
-@Entity
+@Entity(tableName = "image")
 data class ImageEntity(
     @PrimaryKey
     val id: String,

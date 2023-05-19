@@ -2,8 +2,8 @@ package com.yangsooplus.snapkarlo.ui.maker
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yangsooplus.snapkarlo.data.remote.ApiState
 import com.yangsooplus.snapkarlo.data.KarloRepository
+import com.yangsooplus.snapkarlo.data.remote.ApiState
 import com.yangsooplus.snapkarlo.data.remote.model.Prompt
 import com.yangsooplus.snapkarlo.data.remote.model.PromptData
 import com.yangsooplus.snapkarlo.data.remote.model.T2iResponse
@@ -44,6 +44,7 @@ class MakerViewModel @Inject constructor(
             }.collect {
                 it.data?.let { t2i ->
                     _t2iResponseState.value = ApiState.Success(data = t2i)
+                    karloRepository.insertImage(t2i.images[0], text)
                 }
             }
         }
