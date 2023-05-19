@@ -1,7 +1,7 @@
 package com.yangsooplus.snapkarlo.data.remote
 
-import com.yangsooplus.snapkarlo.data.model.PromptData
-import com.yangsooplus.snapkarlo.data.model.T2iResponse
+import com.yangsooplus.snapkarlo.data.remote.model.PromptData
+import com.yangsooplus.snapkarlo.data.remote.model.T2iResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

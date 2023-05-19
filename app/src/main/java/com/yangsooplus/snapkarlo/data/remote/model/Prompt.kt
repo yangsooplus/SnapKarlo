@@ -1,4 +1,4 @@
-package com.yangsooplus.snapkarlo.data.model
+package com.yangsooplus.snapkarlo.data.remote.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

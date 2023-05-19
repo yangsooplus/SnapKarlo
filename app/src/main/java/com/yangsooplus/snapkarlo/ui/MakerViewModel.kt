@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yangsooplus.snapkarlo.data.ApiState
 import com.yangsooplus.snapkarlo.data.KarloRepository
-import com.yangsooplus.snapkarlo.data.model.Prompt
-import com.yangsooplus.snapkarlo.data.model.PromptData
-import com.yangsooplus.snapkarlo.data.model.T2iResponse
+import com.yangsooplus.snapkarlo.data.remote.model.Prompt
+import com.yangsooplus.snapkarlo.data.remote.model.PromptData
+import com.yangsooplus.snapkarlo.data.remote.model.T2iResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
