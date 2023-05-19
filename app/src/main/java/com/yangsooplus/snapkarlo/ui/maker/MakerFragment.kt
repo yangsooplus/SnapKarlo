@@ -1,17 +1,16 @@
-package com.yangsooplus.snapkarlo.ui
+package com.yangsooplus.snapkarlo.ui.maker
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.yangsooplus.snapkarlo.R
-import com.yangsooplus.snapkarlo.data.ApiState
+import com.yangsooplus.snapkarlo.data.remote.ApiState
 import com.yangsooplus.snapkarlo.data.Base64Converter
 import com.yangsooplus.snapkarlo.databinding.FragmentMakerBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,13 +70,13 @@ class MakerFragment : Fragment() {
     private fun collectUiState() {
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.t2iUiState.collect { uistate ->
+                viewModel.t2IMakerUiState.collect { uistate ->
                     when (uistate) {
-                        UiState.Idle -> {
+                        MakerUiState.Idle -> {
                             binding.pbLoad.visibility = View.GONE
                             binding.btnCreate.isEnabled = true
                         }
-                        UiState.Loading -> {
+                        MakerUiState.Loading -> {
                             binding.pbLoad.visibility = View.VISIBLE
                             binding.btnCreate.isEnabled = false
                         }

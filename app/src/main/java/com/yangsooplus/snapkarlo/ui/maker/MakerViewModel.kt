@@ -1,8 +1,8 @@
-package com.yangsooplus.snapkarlo.ui
+package com.yangsooplus.snapkarlo.ui.maker
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yangsooplus.snapkarlo.data.ApiState
+import com.yangsooplus.snapkarlo.data.remote.ApiState
 import com.yangsooplus.snapkarlo.data.KarloRepository
 import com.yangsooplus.snapkarlo.data.remote.model.Prompt
 import com.yangsooplus.snapkarlo.data.remote.model.PromptData
@@ -26,14 +26,14 @@ class MakerViewModel @Inject constructor(
     private val _t2iResponseState = MutableStateFlow<ApiState<T2iResponse>>(ApiState.Idle())
     val t2iResponseState = _t2iResponseState.asStateFlow()
 
-    val t2iUiState: StateFlow<UiState> = _t2iResponseState.map {
+    val t2IMakerUiState: StateFlow<MakerUiState> = _t2iResponseState.map {
         when (it) {
-            is ApiState.Error -> UiState.Idle
-            is ApiState.Loading -> UiState.Loading
-            is ApiState.Success -> UiState.Idle
-            is ApiState.Idle -> UiState.Idle
+            is ApiState.Error -> MakerUiState.Idle
+            is ApiState.Loading -> MakerUiState.Loading
+            is ApiState.Success -> MakerUiState.Idle
+            is ApiState.Idle -> MakerUiState.Idle
         }
-    }.stateIn(viewModelScope, SharingStarted.Eagerly, UiState.Idle)
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, MakerUiState.Idle)
 
     fun getT2iImage(text: String, batchSize: Int = 1) {
         _t2iResponseState.value = ApiState.Loading()

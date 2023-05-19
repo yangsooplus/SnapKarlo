@@ -1,4 +1,4 @@
-package com.yangsooplus.snapkarlo.data
+package com.yangsooplus.snapkarlo.data.remote
 
 sealed class ApiState<T>(
     val data: T? = null,

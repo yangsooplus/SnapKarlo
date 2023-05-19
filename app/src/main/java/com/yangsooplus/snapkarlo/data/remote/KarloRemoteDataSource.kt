@@ -1,8 +1,7 @@
-package com.yangsooplus.snapkarlo.data
+package com.yangsooplus.snapkarlo.data.remote
 
 import com.yangsooplus.snapkarlo.data.remote.model.PromptData
 import com.yangsooplus.snapkarlo.data.remote.model.T2iResponse
-import com.yangsooplus.snapkarlo.data.remote.KarloService
 import retrofit2.Response
 import javax.inject.Inject
 

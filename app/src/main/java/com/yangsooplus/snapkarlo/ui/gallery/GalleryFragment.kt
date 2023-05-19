@@ -1,4 +1,4 @@
-package com.yangsooplus.snapkarlo.ui
+package com.yangsooplus.snapkarlo.ui.gallery
 
 import android.os.Bundle
 import android.view.LayoutInflater
